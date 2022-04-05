@@ -9,7 +9,7 @@ let myName;
 let myAge;
 
 myName = "Chris";
-myAge =  "23";
+myAge =  "24";
 
 console.log(myName);
 myName = "Nitesh";
@@ -73,7 +73,7 @@ if(5*2==10){
 }else{console.log("inc")}
 
 var time = 9
-if(time>2 && time<8){
+if(time>1 && time<8){
     console.log("good morning");
 }
 else{
