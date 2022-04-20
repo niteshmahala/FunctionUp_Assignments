@@ -1,3 +1,11 @@
+const global_mid=function(req, res,next){
+    const d=new Date();
+    console.log("current date:"+ d + " + " + "my_ip_address:"+req.ip + " Request url:"+req.url)
+    next()
+
+}
+module.exports.global_mid=global_mid
+
 
 const mid1= function ( req, res, next) {
     req.falana= "hi there. i am adding something new to the req object"

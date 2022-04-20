@@ -9,15 +9,22 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
+// const global_mid=function(req, res,next){
+//     const d=new Date();
+//     console.log("current date:"+ d + " + " + "my_ip_address:"+req.ip + " Request url:"+req.url)
+//     next()
+
+// }
+// module.exports.global_mid=global_mid
 
 
 
 router.post("/createBook", BookController.createBook  )
+// router.get("/global_mid", commonMiddlewares.global_mid)
 
 
 
-
-// router.post("/createUser", UserController.createUser  )
+router.post("/createUser", UserController.createUser  )
 // router.get("/getUsersData", UserController.getUsersData)
 
 
@@ -48,7 +55,7 @@ router.post("/createBook", BookController.createBook  )
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+router.get("/basicRoute", commonMW.global_mid, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
 
 
