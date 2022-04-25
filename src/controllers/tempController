@@ -1,0 +1,38 @@
+let axios = require('axios');
+/////////////////////               Assignment 2 Solution          //////////////////////////
+
+let getTemperature = async function(req, res){
+    
+    let q = req.query.q
+    let appid = req.query.appid
+
+    var options = {
+        method: 'get',
+        url: `https://api.openweathermap.org/data/2.5/weather?q=${q}&appid=${appid}`
+ // hit get this url      http://localhost:3000/getTemperature?q=London&appid=3db2dd456bc9f0a864d85415e8bfc895
+    }
+    let result = await axios (options);
+    console.log(result.data);
+    res.status(200).send({ msg:result.data , statu: true})
+ 
+}
+module.exports.getTemperature = getTemperature
+
+let getSortedCities = async function( req, res){
+
+    let cities = [ "Bengaluru" , "Mumbai", "Delhi", "Kolkata", "London"]
+    let cityObjArray = []
+    for (i=0; i<cities.length; i++){
+        
+        let obj = {city: cities[i]}
+        let resp= await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cities[i]}&appid=3db2dd456bc9f0a864d85415e8bfc895`)
+    console.log( resp.data.main.temp)
+    obj.temp = resp.data.main.temp
+    cityObjArray.push(obj)
+}
+let sorted = cityObjArray.sort( function(a,b){ return a.temp - b.temp})
+console.log(sorted)
+res.send({data:sorted, status:true})
+}
+
+module.exports.getSortedCities = getSortedCities

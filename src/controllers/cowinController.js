@@ -1,4 +1,5 @@
-let axios = require("axios")
+let axios = require("axios");
+const { resetWatchers } = require("nodemon/lib/monitor/watch");
 
 
 let getStates = async function (req, res) {
@@ -36,7 +37,24 @@ let getDistricts = async function (req, res) {
         console.log(err)
         res.status(500).send({ msg: err.message })
     }
+} 
+let getByDistrictId = async function(req, res) {
+    
+    let district_id = req.query.district_id
+    let date = req.query.date
+
+    let options = {
+        method: 'get',
+        url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=${district_id}&date=${date}`
+        // hit get request on postman
+        // http://localhost:3000/getByDistrictId?district_id=512&date=12-05-2021
+    }
+    let result = await axios(options);
+    console.log(result)
+    res.status(200).send({msg: result.data ,status:true})
+
 }
+module.exports.getByDistrictId = getByDistrictId 
 
 let getByPin = async function (req, res) {
     try {
