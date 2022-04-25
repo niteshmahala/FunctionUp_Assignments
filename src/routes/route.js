@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const CowinController= require("../controllers/cowinController")
-
+const memesController= require("../controllers/memesController")
 
 
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
+
+router.get("/get_memes", memesController.get_memes)
+router.post("/create_memes", memesController.create_memes)
 
 router.get("/cowin/states", CowinController.getStates)
 router.get("/cowin/districtsInState/:stateId", CowinController.getDistricts)
